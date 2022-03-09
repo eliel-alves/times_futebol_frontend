@@ -1,4 +1,4 @@
 module.exports = {
-    //enderecoapi: "https://node-crud-backend.herokuapp.com"
-    enderecoapi: "http://localhost:3002"
+    enderecoapi: "https://times-futebol-api.herokuapp.com"
+    // enderecoapi: "http://localhost:3002"
 }
