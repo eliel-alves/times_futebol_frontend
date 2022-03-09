@@ -15,10 +15,10 @@ function Table() {
                             data-bs-toggle="modal" data-bs-target="#modalEdicao"
                             onClick={() => {
                                 setObject({
-                                    codigo: 0,
+                                    codigo: "",
                                     nome: "",
                                     sigla: "",
-                                    ano_fundacao: 0,
+                                    ano_fundacao: "",
                                     historia: ""
                                 });
                                 setEdit(false);
@@ -31,7 +31,7 @@ function Table() {
             <Alert alert={alert} />
             {objectList.length === 0 && <h4>Nenhum time foi encontrado! ☹️</h4>}
             {objectList.length > 0 && (
-                <table className="table mt-2">
+                <table className="table table-striped align-middle mt-2">
                     <thead>
                     <tr>
                         <th scope="col">Código</th>
@@ -66,6 +66,7 @@ function Table() {
                         </tr>
                     ))}
                     </tbody>
+                    <caption>{objectList.length + " registro(s) encontrado(s)."}</caption>
                 </table>
             )}
         </div>

@@ -1,15 +1,15 @@
 import { useContext } from 'react';
-import TimeContext from './TimeContext';
+import JogadorContext from './JogadorContext';
 
 function Form() {
-    const { object, handleChange, add } = useContext(TimeContext);
+    const { object, handleChange, add, timesList, posicoesList } = useContext(JogadorContext);
 
     return (
         <div className="modal fade" id="modalEdicao" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Time</h5>
+                        <h5 className="modal-title" id="exampleModalLabel">Jogador</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                     </div>
 
@@ -35,7 +35,7 @@ function Form() {
                                 </label>
                                 <input
                                     type="text"
-                                    placeholder="Digite o nome do Time"
+                                    placeholder="Digite o nome do Jogador"
                                     className="form-control"
                                     id="txtNome"
                                     name="nome"
@@ -45,50 +45,57 @@ function Form() {
                                 />
                             </div>
                             <div className="form-group pt-2">
-                                <label htmlFor="txtSigla" className="form-label fw-bold">
-                                    Sigla
+                                <label htmlFor="numberCamisa" className="form-label fw-bold">
+                                    Número da Camisa
                                 </label>
                                 <input
-                                    type="text" maxLength="3"
-                                    placeholder="Sigla"
+                                    type="number" min="1" max="99"
+                                    placeholder="Insira o número da camisa"
                                     className="form-control"
-                                    style={{textTransform: "uppercase"}}
-                                    id="txtSigla"
-                                    name="sigla"
-                                    value={object.sigla}
+                                    id="numberCamisa"
+                                    name="numero_camisa"
+                                    value={object.numero_camisa}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
                             <div className="form-group pt-2">
-                                <label htmlFor="numberAnoFundacao" className="form-label fw-bold">
-                                    Ano de Fundação
+                                <label htmlFor="selectTime" className="form-label fw-bold">
+                                    Time
                                 </label>
-                                <input
-                                    type="number" min="1500" max="2022"
-                                    placeholder="Insira o ano de fundação"
+                                <select
                                     className="form-control"
-                                    id="numberAnoFundacao"
-                                    name="ano_fundacao"
-                                    value={object.ano_fundacao}
+                                    id="selectTime"
+                                    value={object.time}
+                                    name="time"
                                     onChange={handleChange}
-                                    required
-                                />
+                                    required>
+                                    <option disable="true" value="">(Selecione o Time)</option>
+                                    {timesList.map((time) => (
+                                        <option key={time.codigo} value={time.codigo}>
+                                            {time.nome}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="form-group pt-2">
-                                <label htmlFor="txtHistoria" className="form-label fw-bold">
-                                    História
+                                <label htmlFor="selectPosicao" className="form-label fw-bold">
+                                    Posição
                                 </label>
-                                <textarea
+                                <select
                                     className="form-control"
-                                    placeholder="Digite a história do Time"
-                                    id="txtHistoria"
-                                    name="historia"
-                                    value={object.historia}
+                                    id="selectPosicao"
+                                    value={object.posicao}
+                                    name="posicao"
                                     onChange={handleChange}
-                                    rows="3"
-                                    required
-                                />
+                                    required>
+                                    <option disable="true" value="">(Selecione a Posição)</option>
+                                    {posicoesList.map((posicao) => (
+                                        <option key={posicao.codigo} value={posicao.codigo}>
+                                            {posicao.nome}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
                         <div className="modal-footer">
